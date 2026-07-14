@@ -38,6 +38,18 @@ Depois, invoque a skill pelo nome:
 $social-media-IG-AuditEV
 ```
 
+## Compatibilidade
+
+O arquivo principal é o `SKILL.md`. Ele foi escrito para funcionar como instrução autossuficiente em qualquer IDE, agente ou modelo de IA que consiga ler Markdown.
+
+O arquivo `agents/openai.yaml` é apenas um metadado opcional para ambientes compatíveis com esse formato. Quem usa outro agente, IDE ou modelo pode ignorar esse arquivo e usar somente o `SKILL.md`.
+
+## Dependências
+
+A skill não depende de nenhuma outra skill.
+
+Ferramentas como Apify, AppSorteos, Firecrawl, SimilarWeb, Ubersuggest, navegador público ou busca web são apoios opcionais para coleta de dados e evidências. Se alguma delas não estiver disponível, o agente deve usar uma alternativa pública equivalente, pedir arquivos/prints ao usuário ou registrar a limitação no relatório.
+
 ## Como usar
 
 Informe ao agente que deseja auditar um perfil de Instagram ou Social Media. A skill deve primeiro pedir:

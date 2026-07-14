@@ -30,8 +30,8 @@ The agent **MUST NOT** start mapping, scraping, browsing tools, capturing screen
      >
      > *1. **AppSorteos** ou ferramenta similar para taxa de engajamento pública*
      > *2. **Navegação pública do Instagram/Facebook** para leitura visual manual*
-     > *3. **Firecrawl Scrape** para analisar o site institucional, se existir*
-     > *4. **Firecrawl Search** para busca de mercado, benchmarking e concorrentes*
+     > *3. **Firecrawl Scrape ou scraper equivalente** para analisar o site institucional, se existir*
+     > *4. **Firecrawl Search, busca pública na web ou ferramenta equivalente** para busca de mercado, benchmarking e concorrentes*
      >
      > *Deseja prosseguir com a análise mesmo sem imagens e prints automáticos do Instagram?"*
 
@@ -49,6 +49,12 @@ The agent **MUST NOT** start mapping, scraping, browsing tools, capturing screen
 
 ## Core Rules
 
+- This skill must be self-contained. Do not require or invoke any other skill.
+- The `SKILL.md` file is the source of truth and must be usable by any AI model, IDE, agent, or automation runner that can read Markdown instructions.
+- Optional metadata files, such as `agents/openai.yaml`, are only convenience files for compatible environments. They are not required to understand or execute the workflow.
+- External services and tools mentioned here (Apify, AppSorteos, Firecrawl, SimilarWeb, Ubersuggest, browser capture, public web search, or equivalents) are optional execution aids, not required skill dependencies.
+- If a named external tool is unavailable, use an equivalent public-data method, manual browser review, user-provided screenshots/files, or mark the item as a limitation. Never stop execution only because another tool or service is missing, unless the user requires that specific source.
+- Do not depend on local workspace scripts, private folders, MCP servers, plugins, connectors, or hidden files that are not included with this skill package.
 - Work only with public data unless the user explicitly authorizes a logged browser/session.
 - If Instagram credentials, browser cookies, or a stable logged session are unavailable, use Apify as the main fallback for public Instagram profile and post data.
 - Never expose private browser data in screenshots. Crop or mask tabs, emails, messages, favorites, sidebars, IDE content, extensions, account details, and personal notifications.
@@ -139,8 +145,8 @@ Posso seguir com este escopo?
 1. **Authorized logged browser:** use only for public visual capture and navigation.
 2. **Apify:** use with the user's `APIFY_API_TOKEN` when browser access is blocked or unstable. Save input and JSON output.
 3. **Public engagement tools:** use AppSorteos or similar sources to get public engagement rates.
-4. **Public website:** extract SEO, categories, products, CTAs, conversion paths (via Firecrawl Scrape or manual).
-5. **SEO/traffic tools:** use SimilarWeb, Ubersuggest, Firecrawl Search, or equivalent.
+4. **Public website:** extract SEO, categories, products, CTAs, conversion paths via Firecrawl Scrape, another scraper, browser review, or manual review.
+5. **SEO/traffic tools:** use SimilarWeb, Ubersuggest, Firecrawl Search, public search, or equivalent. If none are available, document the limitation and proceed with qualitative public evidence.
 
 ---
 
@@ -405,7 +411,7 @@ Every script must follow: **Reconhece** (Acknowledge) → **Diferencia** (Differ
    * Browser capture or manual screenshot of Instagram profile -> Save to `evidencias/instagram-[client]-public-profile.png`.
    * Run Apify public profile scraper -> Save JSON inputs/outputs to `evidencias/`.
    * Run AppSorteos or public engagement calculators -> Save screenshots and text outputs.
-   * Scrape the public website (if exists) via Firecrawl.
+   * Scrape or manually review the public website (if exists) via Firecrawl, another scraper, browser review, or equivalent public-data method.
    * Download/screenshot 24 post thumbnails -> Save as `evidencias/prints/post-01.jpg` to `post-24.jpg`.
 6. **Analyze & Audit:** Evaluate profile bio, keywords, traffic origins, positioning, engagement rate, content categories, user journey, content formats, digital ecosystem, and actions.
 7. **Generate Deliverables:** Create the auxiliary files (Diagnóstico, Evidências, Jornada, Plano de Mídia/Calendário, Plano de Ação 30/60) and compile them into the consolidated `ANALISE-COMPLETA-IG-[CLIENT].html` ensuring all screenshots/prints are fully loaded as Base64.
